@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package classes;
+import Tile.TileManager;
 import java.awt.*;
 import javax.swing.*;
 import java.lang.*;
@@ -16,10 +17,10 @@ public class GamePanel extends JPanel implements Runnable{
     final int originalTileSize = 16;
     final int scale = 3;
     public final int tileSize = originalTileSize * scale;
-    final int maxscreenCol = 16;
-    final int maxscreenRow = 12;
-    final int screenWidth = tileSize * maxscreenCol;
-    final int screenHeight = tileSize * maxscreenRow;
+    public final int maxscreenCol = 16;
+    public final int maxscreenRow = 12;
+    public final int screenWidth = tileSize * maxscreenCol;
+    public final int screenHeight = tileSize * maxscreenRow;
     
     //FPS
     int FPS = 30;
@@ -28,6 +29,8 @@ public class GamePanel extends JPanel implements Runnable{
     
     Thread gameThread;
     Player player = new Player(this, key);
+    
+    TileManager tileM = new TileManager(this);
     
     int playerX = 100;
     int playerY = 100;
@@ -79,6 +82,8 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g;
+        
+        tileM.draw(g2);
         
         player.draw(g2);
         g.dispose();
