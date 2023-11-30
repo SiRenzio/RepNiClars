@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/classes/KeyHandler.java</file>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/Tile/TileManager.java</file>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/Maps/WorldMap01.txt</file>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/entity/Player.java</file>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/Tile/Tile.java</file>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/classes/App.java</file>
+            <file>file:/C:/Users/cjgas/OneDrive/Documents/NetBeansProjects/SampleGame/src/classes/GamePanel.java</file>
+        </group>
     </open-files>
 </project-private>
