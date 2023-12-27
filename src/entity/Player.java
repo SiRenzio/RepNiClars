@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package entity;
-import classes.GamePanel;
-import classes.KeyHandler;
+import Main.GamePanel;
+import Main.KeyHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -28,19 +28,25 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - gp.tileSize/2;
         screenY = gp.screenHeight/2 - gp.tileSize/2;
         
+        hitbox = new Rectangle(8, 16, 32, 32);
+        
         setDefaultValue();
         getPlayerImage();
     }
     public void getPlayerImage(){
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_up_2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_down_2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_left_2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/image_player/boy_right_2.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/image_player/Up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/image_player/Up2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("/image_player/Up3.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/image_player/Down1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/image_player/Down2.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("/image_player/Down3.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/image_player/Left1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/image_player/Left2.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/image_player/Left3.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/image_player/Right1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/image_player/Right2.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/image_player/Right3.png"));
             
         }catch(IOException e){
             e.printStackTrace();
@@ -48,8 +54,8 @@ public class Player extends Entity{
     }
     
     public void setDefaultValue(){
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 22;
+        worldX = gp.tileSize * 9;
+        worldY = gp.tileSize * 9;
         speed = 4;
         direction = "up";
     }
@@ -58,38 +64,57 @@ public class Player extends Entity{
         if(key.upPressed == true || key.downPressed == true || key.leftPressed == true || key.rightPressed == true){
             spriteCounter++;
             if(spriteCounter > 8){
-            if(spriteNum == 1){
-                spriteNum = 2;
+                if(spriteNum == 1){
+                    spriteNum = 2;
+                }
+                else if(spriteNum == 2){
+                    spriteNum = 3;
+                }
+                else if(spriteNum == 3){
+                    spriteNum = 4;
+                }
+                else if(spriteNum == 4){
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
             }
-            else if(spriteNum == 2){
-                spriteNum = 1;
+        
+        
+            if(key.upPressed == true){
+                direction = "up";            
             }
-            spriteCounter = 0;
+            else if(key.downPressed == true){
+                direction = "down";            
+            }
+            else if(key.leftPressed == true){
+                direction = "left";            
+            }
+            else if(key.rightPressed == true){
+                direction = "right";         
+            }
+
+            collisionOn = false;
+            gp.cc.tilechecker(this);
+
+            if(collisionOn == false){
+                switch(direction){
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
         }
-        }
-        
-        if(key.upPressed == true){
-            direction = "up";
-            worldY -= speed;
-        }
-        else if(key.downPressed == true){
-            direction = "down";
-            worldY += speed;
-        }
-        else if(key.leftPressed == true){
-            direction = "left";
-            worldX -= speed;
-        }
-        else if(key.rightPressed == true){
-            direction = "right";
-            worldX += speed;
-        }
-        
-        
     }
     public void draw(Graphics2D g2){
-        //g2.setColor(Color.white);
-        //g2.fillRect(x, y, gp.tileSize, gp.tileSize);
         
         BufferedImage image = null;
         
@@ -101,6 +126,12 @@ public class Player extends Entity{
                 if(spriteNum == 2){
                     image = up2;
                 }
+                if(spriteNum == 3){
+                    image = up3;
+                }
+                if(spriteNum == 4){
+                    image = up2;
+                }
                 break;
             case "down":
                 if(spriteNum == 1){
@@ -109,6 +140,12 @@ public class Player extends Entity{
                 if(spriteNum == 2){
                     image = down2;
                 }
+                if(spriteNum == 3){
+                    image = down3;
+                }
+                if(spriteNum == 4){
+                    image = down2;
+                }    
                 break;
             case "left":
                 if(spriteNum == 1){
@@ -117,12 +154,24 @@ public class Player extends Entity{
                 if(spriteNum == 2){
                     image = left2;
                 }
+                if(spriteNum == 3){
+                    image = left3;
+                }
+                if(spriteNum == 4){
+                    image = left2;
+                }
                 break;
             case "right":
                 if(spriteNum == 1){
                     image = right1;
                 }
                 if(spriteNum == 2){
+                    image = right2;
+                }
+                if(spriteNum == 3){
+                    image = right3;
+                }
+                if(spriteNum == 4){
                     image = right2;
                 }
                 break;
