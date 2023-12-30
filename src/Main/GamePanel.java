@@ -58,6 +58,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
             
     public void gameSetUP(){
+        os.setobject();
+        
         playBGM(0);
     }
 
@@ -106,6 +108,11 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         if ("game".equals(state)){
             tileM.draw(g2);
+            for(int i = 0; i < object.length; i++){
+                if(object[i] != null){
+                    object[i].draw(g2, this);
+                }
+            }
             player.draw(g2);
             time.draw(g2);
         }

@@ -67,4 +67,60 @@ public class CollisionCheck{
                 break;
         }
     }
+    
+    public int checkObject(Entity entity, boolean player){
+        int index = 999;
+        
+        for(int i = 0; i < gp.object.length; i++){
+            if(gp.object[i] != null){
+                entity.hitbox.x = entity.worldX + entity.hitbox.x;
+                entity.hitbox.y = entity.worldY + entity.hitbox.y;
+                
+                gp.object[i].hitbox.x = gp.object[i].worldX + gp.object[i].hitbox.x;
+                gp.object[i].hitbox.y = gp.object[i].worldY + gp.object[i].hitbox.y;
+                
+                switch(entity.direction){
+                    case "up":
+                        entity.hitbox.y -= entity.speed;
+                        if(entity.hitbox.intersects(gp.object[i].hitbox)){
+                            if(gp.object[i].collision == true){
+                            System.exit(0);
+                            }
+                        }
+                        
+                        break;
+                    case "down":
+                        entity.hitbox.y += entity.speed;
+                        if(entity.hitbox.intersects(gp.object[i].hitbox)){
+                            if(gp.object[i].collision == true){
+                            System.exit(0);
+                            }
+                        }
+                        break;
+                    case "left":
+                        entity.hitbox.x -= entity.speed;
+                        if(entity.hitbox.intersects(gp.object[i].hitbox)){
+                            if(gp.object[i].collision == true){
+                            System.exit(0);
+                            }
+                        }
+                        break;
+                    case "right":
+                        entity.hitbox.x += entity.speed;
+                        if(entity.hitbox.intersects(gp.object[i].hitbox)){
+                            if(gp.object[i].collision == true){
+                            System.exit(0);
+                            }
+                        }
+                        break;
+                }
+                entity.hitbox.x = entity.hitboxDefaultX;
+                entity.hitbox.y = entity.hitboxDefaultY;
+                gp.object[i].hitbox.x = gp.object[i].hitboxX;
+                gp.object[i].hitbox.y = gp.object[i].hitboxY;
+            }
+        }
+        
+        return index;
+    }
 }
