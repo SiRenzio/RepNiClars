@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
     public ObjectSetter os = new ObjectSetter(this);
     public SFX music = new SFX();
     public SFX fx = new SFX();
+    public Time time = new Time(this);
     
     TileManager tileM = new TileManager(this);
     StartScreen ss = new StartScreen(this,key);
@@ -90,10 +91,11 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void update(){
-        if (state == "game"){
+        if ("game".equals(state)){
             player.update();
+            time.update();
         }
-        else if (state == "start"){
+        else if ("start".equals(state)){
             ss.update();
         }
     }
@@ -102,11 +104,12 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         
         Graphics2D g2 = (Graphics2D)g;
-        if (state == "game"){
+        if ("game".equals(state)){
             tileM.draw(g2);
             player.draw(g2);
+            time.draw(g2);
         }
-        else if (state == "start"){
+        else if ("start".equals(state)){
             ss.draw(g2);
         }
         g.dispose();
