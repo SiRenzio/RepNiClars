@@ -21,7 +21,6 @@ public class App {
         
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-        
         gamepanel.startGameThread();
     }
 }
