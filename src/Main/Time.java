@@ -32,6 +32,10 @@ public class Time {
             counter = 0;
         }
         
+        if (TimeRemaining == 0){
+            gamepanel.state = "over";
+        }
+        
     }
     
     public String timeformatting(int time){
@@ -42,9 +46,17 @@ public class Time {
     
     public void draw(Graphics2D g2){
         Font font = new Font("arial", Font.BOLD, 50);
+        
+        g2.fillRect(10, 10, 130, 50);
+        g2.setColor(Color.black);
+        
         g2.setFont(font);
         g2.setColor(Color.white);
-        g2.drawString(time, 0, 35);
+        g2.drawString(time, 10, 50);
+    }
+    
+    public void resetted(){
+        TimeRemaining = 60 * 10;
     }
 }
 

@@ -29,6 +29,7 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldHeight = tileSize * maxWorldRow;
     
     int FPS = 60;
+    public boolean reset = false;
     
     KeyHandler key;
     Thread gameThread;
@@ -37,10 +38,13 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionCheck cc = new CollisionCheck(this);
     public ParentObject object[] = new ParentObject[15];
     public ObjectSetter os = new ObjectSetter(this);
+    
     public SFX music = new SFX();
     public SFX fx = new SFX();
-    public Time time = new Time(this);
+    public GameOver go = new GameOver(this, key);
     
+    public Time time = new Time(this);
+
     TileManager tileM = new TileManager(this);
     StartScreen ss = new StartScreen(this,key);
     
@@ -49,7 +53,7 @@ public class GamePanel extends JPanel implements Runnable{
     public GamePanel(){
         key = new KeyHandler(this);
         player = new Player(this,key);
-        
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -100,6 +104,14 @@ public class GamePanel extends JPanel implements Runnable{
         else if ("start".equals(state)){
             ss.update();
         }
+        else if ("over".equals(state)){
+            go.update();
+            if (reset == true){
+                state = "game";
+                time.resetted();
+                player.setDefaultValue();
+            }
+        }
     }
     
     public void paintComponent(Graphics g){
@@ -118,6 +130,10 @@ public class GamePanel extends JPanel implements Runnable{
         }
         else if ("start".equals(state)){
             ss.draw(g2);
+        }
+        
+        else if ("over".equals(state)){
+            go.draw(g2);
         }
         g.dispose();
     }
