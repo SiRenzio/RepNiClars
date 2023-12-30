@@ -57,6 +57,15 @@ public class GamePanel extends JPanel implements Runnable{
         this.setFocusable(true);
         this.addKeyListener(key);
     }
+<<<<<<< Updated upstream
+=======
+            
+    public void gameSetUP(){
+        os.setobject();
+        
+        playBGM(0);
+    }
+>>>>>>> Stashed changes
 
     public void startGameThread(){
         gameThread = new Thread(this);
@@ -103,6 +112,11 @@ public class GamePanel extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         if ("game".equals(state)){
             tileM.draw(g2);
+            for(int i = 0; i < object.length; i++){
+                if(object[i] != null){
+                    object[i].draw(g2, this);
+                }
+            }
             player.draw(g2);
             t.draw(g2);
         }
@@ -111,5 +125,23 @@ public class GamePanel extends JPanel implements Runnable{
         }
         g.dispose();
     }
+<<<<<<< Updated upstream
     
+=======
+   
+    public void playBGM(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+    
+    public void stopBGM(){
+        music.stop();
+    }
+    
+    public void playSfx(int i){
+        fx.setFile(i);
+        fx.play();
+    }
+>>>>>>> Stashed changes
 }

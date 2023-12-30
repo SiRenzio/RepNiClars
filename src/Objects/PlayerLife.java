@@ -16,10 +16,9 @@ public class PlayerLife extends ParentObject{
         name = "Life";
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/image_objects/Life1.png"));
-            image2 = ImageIO.read(getClass().getResourceAsStream("/image_objects/Life2.png"));
-            image3 = ImageIO.read(getClass().getResourceAsStream("/image_objects/Life3.png"));
         }catch(Exception e){
             e.printStackTrace();
         }
+        collision = true;
     }
 }
