@@ -38,6 +38,7 @@ public class GamePanel extends JPanel implements Runnable{
     public ParentObject object[] = new ParentObject[15];
     public ObjectSetter os = new ObjectSetter(this);
     public SFX music = new SFX();
+    public SFX fx = new SFX();
     
     TileManager tileM = new TileManager(this);
     StartScreen ss = new StartScreen(this,key);
@@ -122,6 +123,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
     
     public void playSfx(int i){
-        
+        fx.setFile(i);
+        fx.play();
     }
 }

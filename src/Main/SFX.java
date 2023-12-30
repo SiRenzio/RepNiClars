@@ -28,8 +28,6 @@ public class SFX {
                 AudioInputStream ais = AudioSystem.getAudioInputStream(sfx[i]);
                 this.clip = AudioSystem.getClip();
                 this.clip.open(ais);
-                
-                
             }
             else{
                 System.out.print("Error");
