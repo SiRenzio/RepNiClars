@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
  * @author cjgas
  */
 public class ParentObject {
-    public BufferedImage image, image2, image3;
+    public BufferedImage image;
     public String name;
     public boolean collision = false;
     public int worldX, worldY;

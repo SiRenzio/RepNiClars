@@ -28,7 +28,13 @@ public class Player extends Entity{
         screenX = gp.screenWidth/2 - gp.tileSize/2;
         screenY = gp.screenHeight/2 - gp.tileSize/2;
         
-        hitbox = new Rectangle(8, 16, 32, 32);
+        hitbox = new Rectangle();
+        hitbox.x = 8;
+        hitbox.y = 16;
+        hitboxDefaultX = hitbox.x;
+        hitboxDefaultY = hitbox.y;
+        hitbox.width = 32;
+        hitbox.height = 32;
         
         setDefaultValue();
         getPlayerImage();
@@ -45,7 +51,7 @@ public class Player extends Entity{
             left2 = ImageIO.read(getClass().getResourceAsStream("/image_player/Left2.png"));
             left3 = ImageIO.read(getClass().getResourceAsStream("/image_player/Left3.png"));
             right1 = ImageIO.read(getClass().getResourceAsStream("/image_player/Right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/image_player/r2.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/image_player/Right2.png"));
             right3 = ImageIO.read(getClass().getResourceAsStream("/image_player/Right3.png"));
             
         }catch(IOException e){
@@ -95,6 +101,8 @@ public class Player extends Entity{
 
             collisionOn = false;
             gp.cc.tilechecker(this);
+            
+            gp.cc.checkObject(this, true);
 
             if(collisionOn == false){
                 switch(direction){
@@ -179,6 +187,4 @@ public class Player extends Entity{
         
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
-    
-
 }
