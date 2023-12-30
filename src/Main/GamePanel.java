@@ -28,7 +28,6 @@ public class GamePanel extends JPanel implements Runnable{
     public final int worldWidth = tileSize * maxWorldCol;
     public final int worldHeight = tileSize * maxWorldRow;
     
-    //FPS
     int FPS = 60;
     
     KeyHandler key;
@@ -38,6 +37,7 @@ public class GamePanel extends JPanel implements Runnable{
     public CollisionCheck cc = new CollisionCheck(this);
     public ParentObject object[] = new ParentObject[15];
     public ObjectSetter os = new ObjectSetter(this);
+    public SFX music = new SFX();
     
     TileManager tileM = new TileManager(this);
     StartScreen ss = new StartScreen(this,key);
@@ -53,6 +53,10 @@ public class GamePanel extends JPanel implements Runnable{
         this.setDoubleBuffered(true);
         this.setFocusable(true);
         this.addKeyListener(key);
+    }
+            
+    public void gameSetUP(){
+        playBGM(0);
     }
 
     public void startGameThread(){
@@ -107,4 +111,17 @@ public class GamePanel extends JPanel implements Runnable{
         g.dispose();
     }
     
+    public void playBGM(int i){
+        music.setFile(i);
+        music.play();
+        music.loop();
+    }
+    
+    public void stopBGM(){
+        music.stop();
+    }
+    
+    public void playSfx(int i){
+        
+    }
 }
