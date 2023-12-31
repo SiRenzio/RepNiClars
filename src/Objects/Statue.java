@@ -15,7 +15,7 @@ public class Statue extends ParentObject{
     public Statue(){
         name = "Statue";
         try{
-            image = ImageIO.read(getClass().getResourceAsStream("/image_objects/Life1.png"));
+            image = ImageIO.read(getClass().getResourceAsStream("/image_objects/gimenothegreat.png"));
         }catch(Exception e){
             e.printStackTrace();
         }
