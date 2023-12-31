@@ -50,7 +50,7 @@ public class StartScreen {
         counter++;
         if (counter == 20) {
             counter = 0;
-            drawText = !drawText; // Toggle the value to make it blink
+            drawText = !drawText;
         }
     }   
     

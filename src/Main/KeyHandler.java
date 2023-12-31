@@ -22,7 +22,7 @@ public class KeyHandler implements KeyListener{
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         
-        if(gamepanel.state == "game"){
+        if("game".equals(gamepanel.state)){
             if(code == KeyEvent.VK_W){
                 upPressed = true;
             }
@@ -36,10 +36,25 @@ public class KeyHandler implements KeyListener{
                 rightPressed = true;
             }
         }
-        if(gamepanel.state == "start"){
+        if("start".equals(gamepanel.state)){
             if (code == KeyEvent.VK_ENTER){
                 enterPressed = true;
             }
+        }
+        
+        if("over".equals(gamepanel.state)){
+            if(code == KeyEvent.VK_W){
+                upPressed = true;
+            }
+            
+            if(code == KeyEvent.VK_S){
+                downPressed = true;
+            }
+            
+            if (code == KeyEvent.VK_ENTER){
+                enterPressed = true;
+            }
+            
         }
     }
     
@@ -63,6 +78,9 @@ public class KeyHandler implements KeyListener{
         }
         if(code == KeyEvent.VK_D){
             rightPressed = false;
+        }
+        if (code == KeyEvent.VK_ENTER){
+            enterPressed = false;
         }
     }
     
