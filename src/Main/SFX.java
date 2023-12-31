@@ -20,6 +20,7 @@ public class SFX {
     
     public SFX(){
         sfx[0] = new File("src\\Sounds\\Yoshi.wav");
+        sfx[1] = new File("src\\Sounds\\Victory.wav");
     }
     
     public void setFile(int i){

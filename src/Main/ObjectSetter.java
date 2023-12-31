@@ -5,7 +5,7 @@
  */
 package Main;
 
-import Objects.PlayerLife;
+import Objects.Statue;
 
 /**
  *
@@ -18,7 +18,7 @@ public class ObjectSetter {
     }
     
     public void setobject(){
-        gp.object[0] = new PlayerLife();
+        gp.object[0] = new Statue();
         gp.object[0].worldX = 11 * gp.tileSize;
         gp.object[0].worldY = 64 * gp.tileSize;
     }

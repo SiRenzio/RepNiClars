@@ -68,8 +68,7 @@ public class CollisionCheck{
         }
     }
     
-    public int checkObject(Entity entity, boolean player){
-        int index = 999;
+    public void checkObject(Entity entity, boolean player){
         
         for(int i = 0; i < gp.object.length; i++){
             if(gp.object[i] != null){
@@ -84,7 +83,7 @@ public class CollisionCheck{
                         entity.hitbox.y -= entity.speed;
                         if(entity.hitbox.intersects(gp.object[i].hitbox)){
                             if(gp.object[i].collision == true){
-                            System.exit(0);
+                            gp.newstate = "victory";
                             }
                         }
                         
@@ -93,7 +92,7 @@ public class CollisionCheck{
                         entity.hitbox.y += entity.speed;
                         if(entity.hitbox.intersects(gp.object[i].hitbox)){
                             if(gp.object[i].collision == true){
-                            System.exit(0);
+                            gp.newstate = "victory";
                             }
                         }
                         break;
@@ -101,7 +100,7 @@ public class CollisionCheck{
                         entity.hitbox.x -= entity.speed;
                         if(entity.hitbox.intersects(gp.object[i].hitbox)){
                             if(gp.object[i].collision == true){
-                            System.exit(0);
+                            gp.newstate = "victory";
                             }
                         }
                         break;
@@ -109,7 +108,7 @@ public class CollisionCheck{
                         entity.hitbox.x += entity.speed;
                         if(entity.hitbox.intersects(gp.object[i].hitbox)){
                             if(gp.object[i].collision == true){
-                            System.exit(0);
+                            gp.newstate = "victory";
                             }
                         }
                         break;
@@ -120,7 +119,5 @@ public class CollisionCheck{
                 gp.object[i].hitbox.y = gp.object[i].hitboxY;
             }
         }
-        
-        return index;
     }
 }

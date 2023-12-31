@@ -43,12 +43,15 @@ public class GamePanel extends JPanel implements Runnable{
     public SFX fx = new SFX();
     public GameOver go = new GameOver(this, key);
     
+    public VictoryScreen vs = new VictoryScreen(this);
+    
     public Time time = new Time(this);
 
     TileManager tileM = new TileManager(this);
     StartScreen ss = new StartScreen(this,key);
     
     public String state = "start";
+    public String newstate = state;
     
     public GamePanel(){
         key = new KeyHandler(this);
@@ -127,6 +130,13 @@ public class GamePanel extends JPanel implements Runnable{
             }
             player.draw(g2);
             time.draw(g2);
+            
+            if ("victory".equals(newstate)){
+                vs.draw(g2);
+                stopBGM();
+                gameThread = null;
+                playSfx(1);
+            }
         }
         else if ("start".equals(state)){
             ss.draw(g2);

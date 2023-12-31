@@ -11,9 +11,9 @@ import javax.imageio.ImageIO;
  *
  * @author cjgas
  */
-public class PlayerLife extends ParentObject{
-    public PlayerLife(){
-        name = "Life";
+public class Statue extends ParentObject{
+    public Statue(){
+        name = "Statue";
         try{
             image = ImageIO.read(getClass().getResourceAsStream("/image_objects/Life1.png"));
         }catch(Exception e){
