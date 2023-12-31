@@ -19,8 +19,8 @@ public class SFX {
     Clip clip;
     
     public SFX(){
-        sfx[0] = new File("src\\Sounds\\Yoshi.wav");
-        sfx[1] = new File("src\\Sounds\\Victory.wav");
+        sfx[0] = new File("src/Sounds/Yoshi.wav");
+        sfx[1] = new File("src/Sounds/Victory.wav");
     }
     
     public void setFile(int i){
